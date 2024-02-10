@@ -1,4 +1,11 @@
-# 💤 LazyVim
+# How to configure the NeoVim - LazyVim configuration
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+## Initial Configuration
+
+### OhMyZsh
+
+https://github.com/romkatv/powerlevel10k
+
+## MacOs
+
+## Windows

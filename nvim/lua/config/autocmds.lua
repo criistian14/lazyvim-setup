@@ -14,6 +14,11 @@ local function setup_flutter()
     buffer = true,
   })
 
+  vim.keymap.set("n", ";fs", [[<cmd>FlutterQuit<CR>]], {
+    desc = "Stop flutter",
+    buffer = true,
+  })
+
   vim.keymap.set("n", ";fR", [[<cmd>FlutterRestart<CR>]], {
     desc = "Restart flutter",
     buffer = true,

@@ -1,6 +1,17 @@
 return {
   {
     "rcarriga/nvim-dap-ui",
+    keys = {
+      {
+        "<leader>dU",
+        function()
+          require("dapui").toggle({
+            layout = 1,
+          })
+        end,
+        desc = "Toggle breakpoints and stacks",
+      },
+    },
     opts = {
       layouts = {
         {
@@ -12,6 +23,15 @@ return {
           },
           size = 40, -- 40 columns
           position = "left",
+        },
+
+        {
+          elements = {
+            -- "console",
+            "repl",
+          },
+          size = 0.25,
+          position = "bottom",
         },
       },
     },

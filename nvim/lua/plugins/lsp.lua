@@ -16,7 +16,7 @@ return {
           -- set to true to be able use the 'flutter_tools_decorations.device' in your statusline
           -- this will show the currently running device if an application was started with a specific
           -- device
-          -- device = false,
+          device = true,
           -- set to true to be able use the 'flutter_tools_decorations.project_config' in your statusline
           -- this will show the currently selected project configuration
           -- project_config = false,
@@ -34,7 +34,7 @@ return {
         --   }
         -- end,
       },
-      -- fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
+      fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
       -- widget_guides = {
       --   enabled = false,
       -- },

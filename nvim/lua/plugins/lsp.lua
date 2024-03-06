@@ -25,9 +25,7 @@ return {
       debugger = { -- integrate with nvim dap + install dart code debugger
         enabled = true,
         run_via_dap = true, -- use dap instead of a plenary job to run flutter apps
-        -- if empty dap will not stop on any exceptions, otherwise it will stop on those specified
-        -- see |:help dap.set_exception_breakpoints()| for more info
-        exception_breakpoints = {},
+        exception_breakpoints = { "raised", "uncaught" },
         -- register_configurations = function(paths)
         --   require("dap").configurations.dart = {
         --     <put here config that you would find in .vscode/launch.json>
@@ -35,9 +33,10 @@ return {
         -- end,
       },
       fvm = true, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
-      -- widget_guides = {
-      --   enabled = false,
-      -- },
+      widget_guides = {
+        enabled = true,
+        debug = true,
+      },
       dev_log = {
         enabled = false,
         notify_errors = true, -- if there is an error whilst running then notify the user
@@ -55,6 +54,13 @@ return {
           -- foreground = true, -- highlight the foreground
           -- virtual_text = true, -- show the highlight using virtual text
           -- virtual_text_str = "■", -- the virtual text character to highlight
+        },
+        settings = {
+          showTodos = true,
+          completeFunctionCalls = true,
+          renameFilesWithClasses = "prompt", -- "always"
+          enableSnippets = true,
+          updateImportsOnRename = true,
         },
       },
     },

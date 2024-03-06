@@ -475,5 +475,35 @@
       ");"
     ],
     "description": "Create a testWidgets function"
+  },
+  "Text Theme": {
+    "prefix": "f-textTheme",
+    "body": "final textTheme = Theme.of(context).textTheme;",
+    "description": "Create a Text Theme variable"
+  },
+  "Colors Theme": {
+    "prefix": "f-colors",
+    "body": "final colors = Theme.of(context).colorScheme;",
+    "description": "Create a Color Scheme Theme variable"
+  },
+  "Space Height": {
+    "prefix": "f-sh",
+    "body": "SizedBox(height: $$styles.insets.${1:md});",
+    "description": "Create a SizedBox with Height"
+  },
+  "Space Width": {
+    "prefix": "f-sw",
+    "body": "SizedBox(width: $$styles.insets.${1:md});",
+    "description": "Create a SizedBox with Width"
+  },
+  "Bloc Select": {
+    "prefix": "f-bselect",
+    "body": "final ${1:Variable} = context.select((${2:Bloc} bloc) => bloc.state.${3:Variable});",
+    "description": "Create a Bloc Select from context"
+  },
+  "Bloc Read": {
+    "prefix": "f-bread",
+    "body": "final ${1:Variable} = context.read<${2:Bloc}>();",
+    "description": "Create a instance of Bloc from context"
   }
 }

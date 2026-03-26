@@ -39,7 +39,9 @@ Plug 'tpope/vim-commentary'
 let mapleader = " "
 
 
-"Refactor
+" ─────────────────────────────────────────────────────────────────────────────
+"   Refactoring
+" ─────────────────────────────────────────────────────────────────────────────
 nmap <leader>rn <Action>(RenameElement)
 nmap <leader>mi <Action>(Inline)
 nmap <leader>mv <Action>(IntroduceVariable)
@@ -47,10 +49,11 @@ nmap <leader>mp <Action>(IntroduceParameter)
 
 nmap ]f <Action>(MethodDown)
 nmap [f <Action>(MethodUp)
-vmap <leader>me <Action>(ExtractMethod)
+vmap <leader>em <Action>(ExtractMethod)
+nmap <leader>ea <Action>(IntroduceActionsGroup)
 
-nmap <S-k> <Action>(MoveStatementUp)
-nmap <S-j> <Action>(MoveStatementDown)
+" nmap <S-k> <Action>(MoveStatementUp)
+" nmap <S-j> <Action>(MoveStatementDown)
 nmap gc <Action>(CommentByLineComment)
 
 nmap <A-k> <Action>(MoveLineUp)
@@ -59,30 +62,49 @@ nmap <A-j> <Action>(MoveLineDown)
 vmap <A-j> <Action>(MoveLineDown)
 
 
-"Navigation
+" ─────────────────────────────────────────────────────────────────────────────
+"   Navigation
+" ─────────────────────────────────────────────────────────────────────────────
 nmap gr <Action>(GotoDeclaration)
 nmap gi <Action>(GotoImplementation)
-nmap gd <Action>(GotoDefinition)
+nmap gd <Action>(GotoDeclaration)
 nmap gy <Action>(GotoTypeDeclaration)
 nmap <leader>fr <Action>(RecentFiles)
 nmap <leader>fR <Action>(RecentChangedFiles)
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+MoveEditorToOppositeTabGroup
 
+" ─────────────────────────────────────────────────────────────────────────────
+"   BÚSQUEDA DE ACCIONES & “SEARCH EVERYWHERE”
+" ─────────────────────────────────────────────────────────────────────────────
+nmap <leader>a <Action>(FindAction)
+"nmap <leader><space> <Action>(GotoFile)
+nmap <leader><Space> <Action>(SearchEverywhere)
 nmap <S-h> <Action>(PreviousTab)
 nmap <S-l> <Action>(NextTab)
-nmap <leader><space> <Action>(GotoFile)
+nmap <S-k> <Action>(NextSplitter)
+nmap <S-j> <Action>(PrevSplitter)
 nmap <leader>pm <Action>(GotoSymbol)
+nmap ]e ?{\r%/
+vmap ]e ?{\r%/
 
 
-"Utilities
+" ─────────────────────────────────────────────────────────────────────────────
+"   Utilities
+" ─────────────────────────────────────────────────────────────────────────────
 nmap <leader>e <Action>(ShowErrorDescription)
 nmap za <Action>(CollapseSelection)
 nmap <C-a> <Action>(ShowIntentionActions)
 nmap <leader>\ <Action>(SplitVertically)
+nmap <leader>- <Action>(SplitHorizontally)
 nmap <A-l> <Action>(NextSplitter)
 nmap <A-h> <Action>(PrevSplitter)
 
 
-"Testing
+" ─────────────────────────────────────────────────────────────────────────────
+"   Testing
+" ─────────────────────────────────────────────────────────────────────────────
 nmap <leader>db <Action>(ToggleLineBreakpoint)
-nmap <leader>td <Action>(ContextDebug)
-nmap <leader>tr <Action>(ContextRun)
+nmap <leader>dd <Action>(ContextDebug)
+nmap <leader>dr <Action>(ContextRun)

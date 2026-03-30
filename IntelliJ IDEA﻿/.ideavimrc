@@ -3,44 +3,31 @@
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
 
-
-"IdeaVim: Track Action IDs
-
-
 "" -- Suggested options --
-" Show a few lines of context around the cursor. Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
 set scrolloff=5
-
-" Do incremental searching.
 set incsearch
 
-" Don't use Ex mode, use Q for formatting.
 map Q gq
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
-
-" Highlight copied text
 Plug 'machakann/vim-highlightedyank'
-" Commentary plugin
 Plug 'tpope/vim-commentary'
-
-
-"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
-"" Map \r to the Reformat Code action
-"map \r <Action>(ReformatCode)
-
-"" Map <leader>d to start debug
-"map <leader>d <Action>(Debug)
-
-"" Map \b to toggle the breakpoint on the current line
-"map \b <Action>(ToggleLineBreakpoint)
 
 let mapleader = " "
 
 
 " ─────────────────────────────────────────────────────────────────────────────
 "   Refactoring
+"   <leader>rn  RenameElement     - Renombrar símbolo
+"   <leader>mi  Inline            - Inlinear variable/método (inverso de Extract)
+"   <leader>mv  IntroduceVariable - Extraer expresión a variable
+"   <leader>mp  IntroduceParameter- Extraer a parámetro
+"   <leader>em  ExtractMethod     - Extraer selección a método
+"   <leader>ea  IntroduceActionsGroup - Menú de refactors disponibles
+"
+"   Para agregar tipo explícito en Dart (final x = Y() → final Y x = Y()):
+"   Usa <C-a> con el cursor en la variable → selecciona "Specify type explicitly"
+"   Es una intención del servidor Dart, no existe como <Action>() de IntelliJ
 " ─────────────────────────────────────────────────────────────────────────────
 nmap <leader>rn <Action>(RenameElement)
 nmap <leader>mi <Action>(Inline)
@@ -52,59 +39,81 @@ nmap [f <Action>(MethodUp)
 vmap <leader>em <Action>(ExtractMethod)
 nmap <leader>ea <Action>(IntroduceActionsGroup)
 
-" nmap <S-k> <Action>(MoveStatementUp)
-" nmap <S-j> <Action>(MoveStatementDown)
-nmap gc <Action>(CommentByLineComment)
-
+" Mover líneas individuales con Alt
 nmap <A-k> <Action>(MoveLineUp)
 vmap <A-k> <Action>(MoveLineUp)
 nmap <A-j> <Action>(MoveLineDown)
 vmap <A-j> <Action>(MoveLineDown)
+
+" Mover método/bloque completo con Alt+Shift
+nmap <A-S-k> <Action>(MoveStatementUp)
+vmap <A-S-k> <Action>(MoveStatementUp)
+nmap <A-S-j> <Action>(MoveStatementDown)
+vmap <A-S-j> <Action>(MoveStatementDown)
 
 
 " ─────────────────────────────────────────────────────────────────────────────
 "   Navigation
 " ─────────────────────────────────────────────────────────────────────────────
 nmap gr <Action>(GotoDeclaration)
-nmap gi <Action>(GotoImplementation)
 nmap gd <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
 nmap gy <Action>(GotoTypeDeclaration)
-nmap <leader>fr <Action>(RecentFiles)
-nmap <leader>fR <Action>(RecentChangedFiles)
 nmap ]d <Action>(GotoNextError)
 nmap [d <Action>(GotoPreviousError)
-MoveEditorToOppositeTabGroup
+
+" ]e - Salta al cierre del bloque actual (busca { hacia atrás y va a su })
+nmap ]e ?{<CR>%
+vmap ]e ?{<CR>%
+
 
 " ─────────────────────────────────────────────────────────────────────────────
-"   BÚSQUEDA DE ACCIONES & “SEARCH EVERYWHERE”
+"   Búsqueda & Search Everywhere
 " ─────────────────────────────────────────────────────────────────────────────
-nmap <leader>a <Action>(FindAction)
-"nmap <leader><space> <Action>(GotoFile)
+nmap <leader>a       <Action>(GotoAction)
 nmap <leader><Space> <Action>(SearchEverywhere)
+nmap <leader>pm      <Action>(GotoSymbol)
+nmap <leader>sf      <Action>(RecentFiles)
+nmap <leader>sF      <Action>(RecentChangedFiles)
+
+" Tabs / Splitters
 nmap <S-h> <Action>(PreviousTab)
 nmap <S-l> <Action>(NextTab)
 nmap <S-k> <Action>(NextSplitter)
 nmap <S-j> <Action>(PrevSplitter)
-nmap <leader>pm <Action>(GotoSymbol)
-nmap ]e ?{\r%/
-vmap ]e ?{\r%/
 
 
 " ─────────────────────────────────────────────────────────────────────────────
 "   Utilities
 " ─────────────────────────────────────────────────────────────────────────────
 nmap <leader>e <Action>(ShowErrorDescription)
-nmap za <Action>(CollapseSelection)
-nmap <C-a> <Action>(ShowIntentionActions)
+nmap <C-a>     <Action>(ShowIntentionActions)
+nmap za        <Action>(CollapseSelection)
 nmap <leader>\ <Action>(SplitVertically)
 nmap <leader>- <Action>(SplitHorizontally)
-nmap <A-l> <Action>(NextSplitter)
-nmap <A-h> <Action>(PrevSplitter)
+nmap <A-l>     <Action>(NextSplitter)
+nmap <A-h>     <Action>(PrevSplitter)
+nmap <leader>oi <Action>(OptimizeImports)
+nmap <leader>cf <Action>(ReformatCode)
+
+
+" ─────────────────────────────────────────────────────────────────────────────
+"   Flutter / Run / Debug
+"   Valida IDs con :actionlist Flutter  o  Help > Find Action
+" ─────────────────────────────────────────────────────────────────────────────
+nmap <leader>fr <Action>(ContextRun)
+nmap <leader>fd <Action>(ContextDebug)
+nmap <leader>fs <Action>(Stop)
+nmap <leader>fR <Action>(Rerun)
+nmap <leader>fh <Action>(Flutter.HotReload)
+nmap <leader>fH <Action>(Flutter.HotRestart)
 
 
 " ─────────────────────────────────────────────────────────────────────────────
 "   Testing
 " ─────────────────────────────────────────────────────────────────────────────
 nmap <leader>db <Action>(ToggleLineBreakpoint)
-nmap <leader>dd <Action>(ContextDebug)
-nmap <leader>dr <Action>(ContextRun)
+nmap <leader>tt <Action>(RunContextTest)
+nmap <leader>tT <Action>(DebugContextTest)
+nmap <leader>tr <Action>(RerunTests)
+nmap <leader>ts <Action>(Stop)
